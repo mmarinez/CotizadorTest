@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CotizadorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="NombreCliente" />
+          </Key>
+          <Property Name="NombreCliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" />
+          <Property Name="CodigoPromotor" Type="varchar" MaxLength="50" />
+          <Property Name="Edad0a5" Type="int" />
+          <Property Name="Edad6a14" Type="int" />
+          <Property Name="Edad15a24" Type="int" />
+          <Property Name="Edad25a34" Type="int" />
+          <Property Name="Edad35a44" Type="int" />
+          <Property Name="Edad45a54" Type="int" />
+          <Property Name="Edad55a64" Type="int" />
+        </EntityType>
+        <EntityType Name="PROMOTOR">
+          <Key>
+            <PropertyRef Name="CodigoPromotor" />
+          </Key>
+          <Property Name="CodigoPromotor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombrePromotor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Celular" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PROMOTOR">
+          <End Role="PROMOTOR" Type="Self.PROMOTOR" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROMOTOR">
+              <PropertyRef Name="CodigoPromotor" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="CodigoPromotor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CotizadorModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROMOTOR" EntityType="Self.PROMOTOR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PROMOTOR" Association="Self.FK_PROMOTOR">
+            <End Role="PROMOTOR" EntitySet="PROMOTOR" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CotizadorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="NombreCliente" />
+          </Key>
+          <Property Name="NombreCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPromotor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Edad0a5" Type="Int32" />
+          <Property Name="Edad6a14" Type="Int32" />
+          <Property Name="Edad15a24" Type="Int32" />
+          <Property Name="Edad25a34" Type="Int32" />
+          <Property Name="Edad35a44" Type="Int32" />
+          <Property Name="Edad45a54" Type="Int32" />
+          <Property Name="Edad55a64" Type="Int32" />
+          <NavigationProperty Name="PROMOTOR" Relationship="Self.FK_PROMOTOR" FromRole="CLIENTE" ToRole="PROMOTOR" />
+        </EntityType>
+        <EntityType Name="PROMOTOR">
+          <Key>
+            <PropertyRef Name="CodigoPromotor" />
+          </Key>
+          <Property Name="CodigoPromotor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombrePromotor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTEs" Relationship="Self.FK_PROMOTOR" FromRole="PROMOTOR" ToRole="CLIENTE" />
+        </EntityType>
+        <Association Name="FK_PROMOTOR">
+          <End Role="PROMOTOR" Type="Self.PROMOTOR" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROMOTOR">
+              <PropertyRef Name="CodigoPromotor" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="CodigoPromotor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CotizadorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
+          <EntitySet Name="PROMOTORs" EntityType="Self.PROMOTOR" />
+          <AssociationSet Name="FK_PROMOTOR" Association="Self.FK_PROMOTOR">
+            <End Role="PROMOTOR" EntitySet="PROMOTORs" />
+            <End Role="CLIENTE" EntitySet="CLIENTEs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CotizadorModelStoreContainer" CdmEntityContainer="CotizadorEntities">
+          <EntitySetMapping Name="CLIENTEs">
+            <EntityTypeMapping TypeName="CotizadorModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="CodigoPromotor" ColumnName="CodigoPromotor" />
+                <ScalarProperty Name="Edad0a5" ColumnName="Edad0a5" />
+                <ScalarProperty Name="Edad6a14" ColumnName="Edad6a14" />
+                <ScalarProperty Name="Edad15a24" ColumnName="Edad15a24" />
+                <ScalarProperty Name="Edad25a34" ColumnName="Edad25a34" />
+                <ScalarProperty Name="Edad35a44" ColumnName="Edad35a44" />
+                <ScalarProperty Name="Edad45a54" ColumnName="Edad45a54" />
+                <ScalarProperty Name="Edad55a64" ColumnName="Edad55a64" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROMOTORs">
+            <EntityTypeMapping TypeName="CotizadorModel.PROMOTOR">
+              <MappingFragment StoreEntitySet="PROMOTOR">
+                <ScalarProperty Name="CodigoPromotor" ColumnName="CodigoPromotor" />
+                <ScalarProperty Name="NombrePromotor" ColumnName="NombrePromotor" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

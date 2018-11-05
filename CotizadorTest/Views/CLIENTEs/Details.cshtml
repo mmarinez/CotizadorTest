@@ -1,0 +1,130 @@
+﻿@model CotizadorTest.Models.CLIENTE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLIENTE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Provincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Provincia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad0a5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad0a5)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad6a14)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad6a14)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad15a24)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad15a24)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad25a34)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad25a34)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad35a44)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad35a44)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad45a54)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad45a54)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad55a64)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Edad55a64)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROMOTOR.NombrePromotor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROMOTOR.NombrePromotor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NombreCliente }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

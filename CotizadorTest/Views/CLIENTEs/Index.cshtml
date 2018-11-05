@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CotizadorTest.Models.CLIENTE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Provincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Municipio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad0a5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad6a14)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad15a24)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad25a34)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad35a44)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad45a54)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad55a64)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROMOTOR.NombrePromotor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Provincia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Municipio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad0a5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad6a14)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad15a24)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad25a34)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad35a44)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad45a54)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad55a64)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROMOTOR.NombrePromotor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NombreCliente }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NombreCliente }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NombreCliente })
+        </td>
+    </tr>
+}
+
+</table>
