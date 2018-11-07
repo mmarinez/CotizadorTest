@@ -27,5 +27,6 @@ namespace CotizadorTest.Models
     
         public virtual DbSet<CLIENTE> CLIENTEs { get; set; }
         public virtual DbSet<PROMOTOR> PROMOTORs { get; set; }
+        public virtual DbSet<PlanCliente> PlanClientes { get; set; }
     }
 }

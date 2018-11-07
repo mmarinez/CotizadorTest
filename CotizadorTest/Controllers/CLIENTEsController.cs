@@ -17,7 +17,7 @@ namespace CotizadorTest.Controllers
         // GET: CLIENTEs
         public ActionResult Index()
         {
-            var cLIENTEs = db.CLIENTEs.Include(c => c.PROMOTOR);
+            var cLIENTEs = db.CLIENTEs.Include(c => c.PlanCliente1).Include(c => c.PROMOTOR);
             return View(cLIENTEs.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace CotizadorTest.Controllers
         // GET: CLIENTEs/Create
         public ActionResult Create()
         {
+            ViewBag.PlanCliente = new SelectList(db.PlanClientes, "NombrePlan", "NombrePlan");
             ViewBag.CodigoPromotor = new SelectList(db.PROMOTORs, "CodigoPromotor", "NombrePromotor");
             return View();
         }
@@ -48,7 +49,7 @@ namespace CotizadorTest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64")] CLIENTE cLIENTE)
+        public ActionResult Create([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente")] CLIENTE cLIENTE)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace CotizadorTest.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PlanCliente = new SelectList(db.PlanClientes, "NombrePlan", "NombrePlan", cLIENTE.PlanCliente);
             ViewBag.CodigoPromotor = new SelectList(db.PROMOTORs, "CodigoPromotor", "NombrePromotor", cLIENTE.CodigoPromotor);
             return View(cLIENTE);
         }
@@ -73,6 +75,7 @@ namespace CotizadorTest.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PlanCliente = new SelectList(db.PlanClientes, "NombrePlan", "NombrePlan", cLIENTE.PlanCliente);
             ViewBag.CodigoPromotor = new SelectList(db.PROMOTORs, "CodigoPromotor", "NombrePromotor", cLIENTE.CodigoPromotor);
             return View(cLIENTE);
         }
@@ -82,7 +85,7 @@ namespace CotizadorTest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64")] CLIENTE cLIENTE)
+        public ActionResult Edit([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente")] CLIENTE cLIENTE)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace CotizadorTest.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PlanCliente = new SelectList(db.PlanClientes, "NombrePlan", "NombrePlan", cLIENTE.PlanCliente);
             ViewBag.CodigoPromotor = new SelectList(db.PROMOTORs, "CodigoPromotor", "NombrePromotor", cLIENTE.CodigoPromotor);
             return View(cLIENTE);
         }
@@ -128,5 +132,7 @@ namespace CotizadorTest.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

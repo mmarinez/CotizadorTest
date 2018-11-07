@@ -22,14 +22,16 @@ namespace CotizadorTest.Models
         public string Sector { get; set; }
         public string Municipio { get; set; }
         public string CodigoPromotor { get; set; }
-        public Nullable<int> Edad0a5 { get; set; }
-        public Nullable<int> Edad6a14 { get; set; }
-        public Nullable<int> Edad15a24 { get; set; }
-        public Nullable<int> Edad25a34 { get; set; }
-        public Nullable<int> Edad35a44 { get; set; }
-        public Nullable<int> Edad45a54 { get; set; }
-        public Nullable<int> Edad55a64 { get; set; }
+        public int Edad0a5 { get; set; }
+        public int Edad6a14 { get; set; }
+        public int Edad15a24 { get; set; }
+        public int Edad25a34 { get; set; }
+        public int Edad35a44 { get; set; }
+        public int Edad45a54 { get; set; }
+        public int Edad55a64 { get; set; }
+        public string PlanCliente { get; set; }
     
+        public virtual PlanCliente PlanCliente1 { get; set; }
         public virtual PROMOTOR PROMOTOR { get; set; }
     }
 }

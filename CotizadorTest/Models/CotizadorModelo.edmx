@@ -4,26 +4,40 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CotizadorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CotizadorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CLIENTE">
           <Key>
             <PropertyRef Name="NombreCliente" />
           </Key>
           <Property Name="NombreCliente" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Direccion" Type="varchar" MaxLength="50" />
-          <Property Name="Provincia" Type="varchar" MaxLength="50" />
-          <Property Name="Telefono" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="Sector" Type="varchar" MaxLength="50" />
-          <Property Name="Municipio" Type="varchar" MaxLength="50" />
-          <Property Name="CodigoPromotor" Type="varchar" MaxLength="50" />
-          <Property Name="Edad0a5" Type="int" />
-          <Property Name="Edad6a14" Type="int" />
-          <Property Name="Edad15a24" Type="int" />
-          <Property Name="Edad25a34" Type="int" />
-          <Property Name="Edad35a44" Type="int" />
-          <Property Name="Edad45a54" Type="int" />
-          <Property Name="Edad55a64" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sector" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Municipio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodigoPromotor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edad0a5" Type="int" Nullable="false" />
+          <Property Name="Edad6a14" Type="int" Nullable="false" />
+          <Property Name="Edad15a24" Type="int" Nullable="false" />
+          <Property Name="Edad25a34" Type="int" Nullable="false" />
+          <Property Name="Edad35a44" Type="int" Nullable="false" />
+          <Property Name="Edad45a54" Type="int" Nullable="false" />
+          <Property Name="Edad55a64" Type="int" Nullable="false" />
+          <Property Name="PlanCliente" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanCliente">
+          <Key>
+            <PropertyRef Name="NombrePlan" />
+          </Key>
+          <Property Name="NombrePlan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrecioEdad0a5" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad6a14" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad15a24" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad25a34" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad35a44" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad45a54" Type="int" Nullable="false" />
+          <Property Name="PrecioEdad55a64" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PROMOTOR">
           <Key>
@@ -35,8 +49,8 @@
           <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Celular" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_PROMOTOR">
-          <End Role="PROMOTOR" Type="Self.PROMOTOR" Multiplicity="0..1" />
+        <Association Name="FK__CLIENTE__CodigoP__6383C8BA">
+          <End Role="PROMOTOR" Type="Self.PROMOTOR" Multiplicity="1" />
           <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROMOTOR">
@@ -47,16 +61,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__CLIENTE__PlanCli__6477ECF3">
+          <End Role="PlanCliente" Type="Self.PlanCliente" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanCliente">
+              <PropertyRef Name="NombrePlan" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="PlanCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CotizadorModelStoreContainer">
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanCliente" EntityType="Self.PlanCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROMOTOR" EntityType="Self.PROMOTOR" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_PROMOTOR" Association="Self.FK_PROMOTOR">
+          <AssociationSet Name="FK__CLIENTE__CodigoP__6383C8BA" Association="Self.FK__CLIENTE__CodigoP__6383C8BA">
             <End Role="PROMOTOR" EntitySet="PROMOTOR" />
             <End Role="CLIENTE" EntitySet="CLIENTE" />
           </AssociationSet>
+          <AssociationSet Name="FK__CLIENTE__PlanCli__6477ECF3" Association="Self.FK__CLIENTE__PlanCli__6477ECF3">
+            <End Role="PlanCliente" EntitySet="PlanCliente" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CotizadorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -65,21 +95,23 @@
             <PropertyRef Name="NombreCliente" />
           </Key>
           <Property Name="NombreCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoPromotor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Edad0a5" Type="Int32" />
-          <Property Name="Edad6a14" Type="Int32" />
-          <Property Name="Edad15a24" Type="Int32" />
-          <Property Name="Edad25a34" Type="Int32" />
-          <Property Name="Edad35a44" Type="Int32" />
-          <Property Name="Edad45a54" Type="Int32" />
-          <Property Name="Edad55a64" Type="Int32" />
-          <NavigationProperty Name="PROMOTOR" Relationship="Self.FK_PROMOTOR" FromRole="CLIENTE" ToRole="PROMOTOR" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPromotor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Edad0a5" Type="Int32" Nullable="false" />
+          <Property Name="Edad6a14" Type="Int32" Nullable="false" />
+          <Property Name="Edad15a24" Type="Int32" Nullable="false" />
+          <Property Name="Edad25a34" Type="Int32" Nullable="false" />
+          <Property Name="Edad35a44" Type="Int32" Nullable="false" />
+          <Property Name="Edad45a54" Type="Int32" Nullable="false" />
+          <Property Name="Edad55a64" Type="Int32" Nullable="false" />
+          <Property Name="PlanCliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PlanCliente1" Relationship="CotizadorModel.FK__CLIENTE__PlanCli__5535A963" FromRole="CLIENTE" ToRole="PlanCliente" />
+          <NavigationProperty Name="PROMOTOR" Relationship="CotizadorModel.FK__CLIENTE__CodigoP__5CD6CB2B" FromRole="CLIENTE" ToRole="PROMOTOR" />
         </EntityType>
         <EntityType Name="PROMOTOR">
           <Key>
@@ -90,11 +122,50 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CLIENTEs" Relationship="Self.FK_PROMOTOR" FromRole="PROMOTOR" ToRole="CLIENTE" />
+          <NavigationProperty Name="CLIENTEs" Relationship="CotizadorModel.FK__CLIENTE__CodigoP__5CD6CB2B" FromRole="PROMOTOR" ToRole="CLIENTE" />
         </EntityType>
-        <Association Name="FK_PROMOTOR">
-          <End Role="PROMOTOR" Type="Self.PROMOTOR" Multiplicity="0..1" />
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+        <EntityContainer Name="CotizadorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
+          <EntitySet Name="PROMOTORs" EntityType="Self.PROMOTOR" />
+          <EntitySet Name="PlanClientes" EntityType="CotizadorModel.PlanCliente" />
+          <AssociationSet Name="FK__CLIENTE__PlanCli__5535A963" Association="CotizadorModel.FK__CLIENTE__PlanCli__5535A963">
+            <End Role="PlanCliente" EntitySet="PlanClientes" />
+            <End Role="CLIENTE" EntitySet="CLIENTEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTE__CodigoP__5CD6CB2B" Association="CotizadorModel.FK__CLIENTE__CodigoP__5CD6CB2B">
+            <End Role="PROMOTOR" EntitySet="PROMOTORs" />
+            <End Role="CLIENTE" EntitySet="CLIENTEs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PlanCliente">
+          <Key>
+            <PropertyRef Name="NombrePlan" />
+          </Key>
+          <Property Name="NombrePlan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioEdad0a5" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad6a14" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad15a24" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad25a34" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad35a44" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad45a54" Type="Int32" Nullable="false" />
+          <Property Name="PrecioEdad55a64" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTEs" Relationship="CotizadorModel.FK__CLIENTE__PlanCli__5535A963" FromRole="PlanCliente" ToRole="CLIENTE" />
+        </EntityType>
+        <Association Name="FK__CLIENTE__PlanCli__5535A963">
+          <End Type="CotizadorModel.PlanCliente" Role="PlanCliente" Multiplicity="1" />
+          <End Type="CotizadorModel.CLIENTE" Role="CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanCliente">
+              <PropertyRef Name="NombrePlan" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="PlanCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTE__CodigoP__5CD6CB2B">
+          <End Type="CotizadorModel.PROMOTOR" Role="PROMOTOR" Multiplicity="1" />
+          <End Type="CotizadorModel.CLIENTE" Role="CLIENTE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROMOTOR">
               <PropertyRef Name="CodigoPromotor" />
@@ -104,14 +175,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CotizadorEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
-          <EntitySet Name="PROMOTORs" EntityType="Self.PROMOTOR" />
-          <AssociationSet Name="FK_PROMOTOR" Association="Self.FK_PROMOTOR">
-            <End Role="PROMOTOR" EntitySet="PROMOTORs" />
-            <End Role="CLIENTE" EntitySet="CLIENTEs" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -121,6 +184,7 @@
           <EntitySetMapping Name="CLIENTEs">
             <EntityTypeMapping TypeName="CotizadorModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="PlanCliente" ColumnName="PlanCliente" />
                 <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
@@ -147,6 +211,20 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Celular" ColumnName="Celular" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanClientes">
+            <EntityTypeMapping TypeName="CotizadorModel.PlanCliente">
+              <MappingFragment StoreEntitySet="PlanCliente">
+                <ScalarProperty Name="PrecioEdad55a64" ColumnName="PrecioEdad55a64" />
+                <ScalarProperty Name="PrecioEdad45a54" ColumnName="PrecioEdad45a54" />
+                <ScalarProperty Name="PrecioEdad35a44" ColumnName="PrecioEdad35a44" />
+                <ScalarProperty Name="PrecioEdad25a34" ColumnName="PrecioEdad25a34" />
+                <ScalarProperty Name="PrecioEdad15a24" ColumnName="PrecioEdad15a24" />
+                <ScalarProperty Name="PrecioEdad6a14" ColumnName="PrecioEdad6a14" />
+                <ScalarProperty Name="PrecioEdad0a5" ColumnName="PrecioEdad0a5" />
+                <ScalarProperty Name="NombrePlan" ColumnName="NombrePlan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -178,6 +178,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CotizadorModelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlanCliente.cs">
+      <DependentUpon>CotizadorModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PROMOTOR.cs">
       <DependentUpon>CotizadorModelo.tt</DependentUpon>
     </Compile>
