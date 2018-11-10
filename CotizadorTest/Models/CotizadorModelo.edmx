@@ -25,6 +25,7 @@
           <Property Name="Edad45a54" Type="int" Nullable="false" />
           <Property Name="Edad55a64" Type="int" Nullable="false" />
           <Property Name="PlanCliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalCotizacion" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanCliente">
           <Key>
@@ -112,6 +113,7 @@
           <Property Name="PlanCliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PlanCliente1" Relationship="CotizadorModel.FK__CLIENTE__PlanCli__5535A963" FromRole="CLIENTE" ToRole="PlanCliente" />
           <NavigationProperty Name="PROMOTOR" Relationship="CotizadorModel.FK__CLIENTE__CodigoP__5CD6CB2B" FromRole="CLIENTE" ToRole="PROMOTOR" />
+          <Property Name="TotalCotizacion" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PROMOTOR">
           <Key>
@@ -184,6 +186,7 @@
           <EntitySetMapping Name="CLIENTEs">
             <EntityTypeMapping TypeName="CotizadorModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="TotalCotizacion" ColumnName="TotalCotizacion" />
                 <ScalarProperty Name="PlanCliente" ColumnName="PlanCliente" />
                 <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />

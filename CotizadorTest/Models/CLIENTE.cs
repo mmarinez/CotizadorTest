@@ -30,6 +30,7 @@ namespace CotizadorTest.Models
         public int Edad45a54 { get; set; }
         public int Edad55a64 { get; set; }
         public string PlanCliente { get; set; }
+        public int TotalCotizacion { get; set; }
     
         public virtual PlanCliente PlanCliente1 { get; set; }
         public virtual PROMOTOR PROMOTOR { get; set; }

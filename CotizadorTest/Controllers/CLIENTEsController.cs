@@ -49,7 +49,7 @@ namespace CotizadorTest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente")] CLIENTE cLIENTE)
+        public ActionResult Create([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente,TotalCotizacion")] CLIENTE cLIENTE)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace CotizadorTest.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente")] CLIENTE cLIENTE)
+        public ActionResult Edit([Bind(Include = "NombreCliente,Direccion,Provincia,Telefono,Email,Sector,Municipio,CodigoPromotor,Edad0a5,Edad6a14,Edad15a24,Edad25a34,Edad35a44,Edad45a54,Edad55a64,PlanCliente,TotalCotizacion")] CLIENTE cLIENTE)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +132,5 @@ namespace CotizadorTest.Controllers
             }
             base.Dispose(disposing);
         }
-
-
     }
 }

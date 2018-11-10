@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NombreCliente)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Direccion)
         </th>
         <th>
@@ -33,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Municipio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlanCliente1.NombrePlan)
+            @Html.DisplayNameFor(model => model.PROMOTOR.NombrePromotor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Edad0a5)
@@ -57,16 +54,16 @@
             @Html.DisplayNameFor(model => model.Edad55a64)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PROMOTOR.NombrePromotor)
+            @Html.DisplayNameFor(model => model.PlanCliente1.NombrePlan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCotizacion)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCliente)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Direccion)
         </td>
@@ -86,7 +83,7 @@
             @Html.DisplayFor(modelItem => item.Municipio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PlanCliente1.NombrePlan)
+            @Html.DisplayFor(modelItem => item.PROMOTOR.NombrePromotor)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Edad0a5)
@@ -110,7 +107,10 @@
             @Html.DisplayFor(modelItem => item.Edad55a64)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PROMOTOR.NombrePromotor)
+            @Html.DisplayFor(modelItem => item.PlanCliente1.NombrePlan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCotizacion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.NombreCliente }) |
